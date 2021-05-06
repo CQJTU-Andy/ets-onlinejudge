@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjCommitMapper">
+    <sql id="BaseColNames">
+        commit_id,experiment_id,student_number_id,commit_time,file_path
+    </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
+    select
+       <include refid="BaseColNames"></include>
+    from oj_commit
+    where commit_id = #{commit_id}
+  </select>
+    <select id="selectBy" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_commit
+        where experiment_id=#{experiment_id} and student_number_id=#{student_number_id}
+        order by commit_time desc
+    </select>
+</mapper>

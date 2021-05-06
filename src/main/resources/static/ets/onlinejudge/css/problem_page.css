@@ -1,0 +1,32 @@
+.layui-container > .layui-row{
+    margin-bottom: 10px;
+}
+
+.parent-text-align-center{
+    text-align: center;
+}
+
+.regular-border{
+    border: solid #dbdbdb 2px ;
+    border-radius: 3px;
+}
+.regular-horizontal-padding{
+    padding:20px 0 20px 0;
+}
+
+#experiment-basic-info-container{
+    margin-top: 10px;
+}
+
+#problem-container{
+    padding: 10px;
+
+}
+
+.multiline-text-padding{
+    padding: 10px 20px 10px 20px;
+}
+
+#progress-container{
+    position: fixed;
+}

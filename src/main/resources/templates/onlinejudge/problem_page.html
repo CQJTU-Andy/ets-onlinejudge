@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>upload</title>
+    <!--  引入css文件-->
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/ets/onlinejudge/css/problem_page.css">
+    <!---->
+</head>
+
+<body>
+
+<div class="layui-row" id="progress-container">
+  <div class="layui-col-lg12">
+    <div class="layui-progress">
+      <div class="layui-progress-bar" lay-percent="10%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="layui-container">
+
+  <div class="layui-row regular-border regular-horizontal-padding" id="experiment-basic-info-container">
+    <div class="layui-row" id="experiment-title-container">
+      <div class="layui-col-lg12 parent-text-align-center">
+        <h1 id="experiment-title">链式栈的实现与测试&nbsp
+          <i class="layui-icon layui-icon-ok-circle" id="commit-status-icon" style="color:#0076ff;font-size: 20px;"></i>
+        </h1>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="layui-row parent-text-align-center" id="experiment-limit-container">
+      <div class="layui-col-lg3">
+        发布时间:2021.5.21 20:00
+      </div>
+      <div class="layui-col-lg3">
+        截止时间:2021.5.23 20:00
+      </div>
+      <div class="layui-col-lg3">
+        <i class="layui-icon layui-icon-about"></i> CPU 时间限制:5000ms
+      </div>
+      <div class="layui-col-lg3">
+        <i class="layui-icon layui-icon-about"></i> 内存占用限制:5000KB
+      </div>
+    </div>
+  </div>
+
+
+  <div class="layui-row regular-border" id="experiment-other-info-container">
+
+    <div class="layui-col-lg6 layui-bg-gray" id="problem-container">
+
+      <div class="layui-row"  id="problem-detail-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>题目描述</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <p>
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="layui-row"  id="problem-input-description-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>输入描述</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <p>
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="layui-row"  id="problem-output-description-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>输出描述</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <p>
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="layui-row"  id="problem-io-sample-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>输入输出示例</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <p>
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
+              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="layui-row"  id="problem-tips-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>提示</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <p>
+              没啥提示，自己想吧
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-col-lg6" id="judge-container" style="padding: 10px;">
+
+      <div class="layui-row">
+        <div class="layui-col-lg12">
+          <table id="chosen-files-table"></table>
+        </div>
+      </div>
+
+      <div class="layui-row">
+        <div class="layui-col-lg6">
+          <button type="button" class="layui-btn layui-btn-radius layui-btn-normal layui-btn-fluid" id="choose-file-btn">
+            <i class="layui-icon">&#xe67c;</i>拖拽文件到此处或选择文件
+          </button>
+        </div>
+        <div class="layui-col-lg2" style="padding-left: 3px;">
+          <button class="layui-btn layui-btn-radius layui-btn-warm layui-btn-disabled" id="upload-btn">上传</button>
+        </div>
+        <div class="layui-col-lg4">
+          <button class="layui-btn layui-btn-primary layui-btn-disabled layui-btn-fluid" id="judge-btn">开始评测</button>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--引入js文件-->
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/ets/onlinejudge/js/problem_page.js"></script>
+<!---->
+
+</body>
+</html>
