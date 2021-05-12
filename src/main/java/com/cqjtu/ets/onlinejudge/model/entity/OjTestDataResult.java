@@ -1,17 +1,17 @@
 package com.cqjtu.ets.onlinejudge.model.entity;
 
 public class OjTestDataResult {
-    private Long testDataId;
+    private Long test_data_id=-1L;
 
-    private Long detailId;
+    private Long detail_id=-1L;
 
-    private String testDataFilePath;
+    private String test_data_file_path="none";
 
-    private Integer matchingWordsNumber;
+    private Integer matching_words_number=0;
 
-    private Integer lostWordsNumber;
+    private Integer lost_words_number=0;
 
-    private Integer abundantWordsNumber;
+    private Integer abundant_words_number=0;
 
     public OjTestDataResult() {
     }
@@ -19,60 +19,60 @@ public class OjTestDataResult {
     @Override
     public String toString() {
         return "OjTestDataResult{" +
-                "testDataId=" + testDataId +
-                ", detailId=" + detailId +
-                ", testDataFilePath='" + testDataFilePath + '\'' +
-                ", matchingWordsNumber=" + matchingWordsNumber +
-                ", lostWordsNumber=" + lostWordsNumber +
-                ", abundantWordsNumber=" + abundantWordsNumber +
+                "testDataId=" + test_data_id +
+                ", detailId=" + detail_id +
+                ", testDataFilePath='" + test_data_file_path + '\'' +
+                ", matchingWordsNumber=" + matching_words_number +
+                ", lostWordsNumber=" + lost_words_number +
+                ", abundantWordsNumber=" + abundant_words_number +
                 '}';
     }
 
-    public Long getTestDataId() {
-        return testDataId;
+    public Long getTest_data_id() {
+        return test_data_id;
     }
 
-    public void setTestDataId(Long testDataId) {
-        this.testDataId = testDataId;
+    public void setTest_data_id(Long test_data_id) {
+        this.test_data_id = test_data_id;
     }
 
-    public Long getDetailId() {
-        return detailId;
+    public Long getDetail_id() {
+        return detail_id;
     }
 
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
+    public void setDetail_id(Long detail_id) {
+        this.detail_id = detail_id;
     }
 
-    public String getTestDataFilePath() {
-        return testDataFilePath;
+    public String getTest_data_file_path() {
+        return test_data_file_path;
     }
 
-    public void setTestDataFilePath(String testDataFilePath) {
-        this.testDataFilePath = testDataFilePath == null ? null : testDataFilePath.trim();
+    public void setTest_data_file_path(String test_data_file_path) {
+        this.test_data_file_path = test_data_file_path == null ? null : test_data_file_path.trim();
     }
 
-    public Integer getMatchingWordsNumber() {
-        return matchingWordsNumber;
+    public Integer getMatching_words_number() {
+        return matching_words_number;
     }
 
-    public void setMatchingWordsNumber(Integer matchingWordsNumber) {
-        this.matchingWordsNumber = matchingWordsNumber;
+    public void setMatching_words_number(Integer matching_words_number) {
+        this.matching_words_number = matching_words_number;
     }
 
-    public Integer getLostWordsNumber() {
-        return lostWordsNumber;
+    public Integer getLost_words_number() {
+        return lost_words_number;
     }
 
-    public void setLostWordsNumber(Integer lostWordsNumber) {
-        this.lostWordsNumber = lostWordsNumber;
+    public void setLost_words_number(Integer lost_words_number) {
+        this.lost_words_number = lost_words_number;
     }
 
-    public Integer getAbundantWordsNumber() {
-        return abundantWordsNumber;
+    public Integer getAbundant_words_number() {
+        return abundant_words_number;
     }
 
-    public void setAbundantWordsNumber(Integer abundantWordsNumber) {
-        this.abundantWordsNumber = abundantWordsNumber;
+    public void setAbundant_words_number(Integer abundant_words_number) {
+        this.abundant_words_number = abundant_words_number;
     }
 }

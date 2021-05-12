@@ -3,29 +3,31 @@ package com.cqjtu.ets.onlinejudge.model.entity;
 import java.util.Date;
 
 public class OjProgrammingProblem {
-    private Long problem_id;
+    private Long problem_id=-1L;
 
-    private String problem_name;
+    private String problem_name="none";
 
-    private String input_description;
+    private String input_description="none";
 
-    private String output_description;
+    private String output_description="none";
 
-    private String test_input_dataPath;
+    private String test_input_data_Path ="none";
 
-    private String test_output_dataPath;
+    private String test_output_data_Path ="none";
 
-    private String tips;
+    private String io_sample="none";
 
-    private Date created_time;
+    private String tips="none";
 
-    private Integer cpu_time_limited;
+    private Date created_time=new Date();
 
-    private Integer real_time_limited;
+    private Integer cpu_time_limited=0;
 
-    private Integer memory_limited;
+    private Integer real_time_limited=0;
 
-    private String problem_detail;
+    private Integer memory_limited=0;
+
+    private String problem_detail="none";
 
     public OjProgrammingProblem() {
     }
@@ -33,19 +35,28 @@ public class OjProgrammingProblem {
     @Override
     public String toString() {
         return "OjProgrammingProblem{" +
-                "problemId=" + problem_id +
-                ", problemName='" + problem_name + '\'' +
-                ", inputDescription='" + input_description + '\'' +
-                ", outputDescription='" + output_description + '\'' +
-                ", testInputDataPath='" + test_input_dataPath + '\'' +
-                ", testOutputDataPath='" + test_output_dataPath + '\'' +
+                "problem_id=" + problem_id +
+                ", problem_name='" + problem_name + '\'' +
+                ", input_description='" + input_description + '\'' +
+                ", output_description='" + output_description + '\'' +
+                ", test_input_dataPath='" + test_input_data_Path + '\'' +
+                ", test_output_dataPath='" + test_output_data_Path + '\'' +
+                ", io_sample='" + io_sample + '\'' +
                 ", tips='" + tips + '\'' +
-                ", createdTime=" + created_time +
-                ", cpuTimeLimited=" + cpu_time_limited +
-                ", realTimeLimited=" + real_time_limited +
-                ", memoryLimited=" + memory_limited +
-                ", problemDetail='" + problem_detail + '\'' +
+                ", created_time=" + created_time +
+                ", cpu_time_limited=" + cpu_time_limited +
+                ", real_time_limited=" + real_time_limited +
+                ", memory_limited=" + memory_limited +
+                ", problem_detail='" + problem_detail + '\'' +
                 '}';
+    }
+
+    public String getIo_sample() {
+        return io_sample;
+    }
+
+    public void setIo_sample(String io_sample) {
+        this.io_sample = io_sample;
     }
 
     public Long getProblem_id() {
@@ -80,20 +91,20 @@ public class OjProgrammingProblem {
         this.output_description = output_description == null ? null : output_description.trim();
     }
 
-    public String getTest_input_dataPath() {
-        return test_input_dataPath;
+    public String getTest_input_data_Path() {
+        return test_input_data_Path;
     }
 
-    public void setTest_input_dataPath(String test_input_dataPath) {
-        this.test_input_dataPath = test_input_dataPath == null ? null : test_input_dataPath.trim();
+    public void setTest_input_data_Path(String test_input_data_Path) {
+        this.test_input_data_Path = test_input_data_Path == null ? null : test_input_data_Path.trim();
     }
 
-    public String getTest_output_dataPath() {
-        return test_output_dataPath;
+    public String getTest_output_data_Path() {
+        return test_output_data_Path;
     }
 
-    public void setTest_output_dataPath(String test_output_dataPath) {
-        this.test_output_dataPath = test_output_dataPath == null ? null : test_output_dataPath.trim();
+    public void setTest_output_data_Path(String test_output_data_Path) {
+        this.test_output_data_Path = test_output_data_Path == null ? null : test_output_data_Path.trim();
     }
 
     public String getTips() {

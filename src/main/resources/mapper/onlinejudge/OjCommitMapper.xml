@@ -4,17 +4,37 @@
     <sql id="BaseColNames">
         commit_id,experiment_id,student_number_id,commit_time,file_path
     </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
+    <sql id="arrangeCol">
+        ${colName}=#{${colName}}
+    </sql>
+  <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
     select
-       <include refid="BaseColNames"></include>
+       <include refid="BaseColNames"/>
     from oj_commit
     where commit_id = #{commit_id}
   </select>
     <select id="selectBy" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
         select
-        <include refid="BaseColNames"></include>
+        <include refid="BaseColNames"/>
         from oj_commit
         where experiment_id=#{experiment_id} and student_number_id=#{student_number_id}
         order by commit_time desc
     </select>
+    <select id="selectCommitId" resultType="java.lang.Long">
+        select commit_id
+        from oj_commit
+        order by commit_id desc
+    </select>
+    <insert id="insert" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjCommit">
+        insert into oj_commit(
+        <include refid="BaseColNames"/>
+        )
+        values (
+            #{commit_id},
+            #{experiment_id},
+            #{student_number_id},
+            #{commit_time},
+            #{file_path}
+        )
+    </insert>
 </mapper>

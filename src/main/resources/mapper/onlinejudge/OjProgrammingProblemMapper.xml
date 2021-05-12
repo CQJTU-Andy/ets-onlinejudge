@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjProgrammingProblemMapper">
     <sql id="BaseColNames">
-        problem_id,problem_detail,input_description,output_description,test_input_data_path,test_output_data_path,tips,create_time
-        ,cpu_time_limited,real_time_limited,memory_limited
+        problem_id,problem_detail,input_description,output_description,test_input_data_path,test_output_data_path,tips,created_time
+        ,cpu_time_limited,real_time_limited,memory_limited,io_sample
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjProgrammingProblem">
+    <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjProgrammingProblem">
         select
         <include refid="BaseColNames"></include>
         from oj_programming_problem

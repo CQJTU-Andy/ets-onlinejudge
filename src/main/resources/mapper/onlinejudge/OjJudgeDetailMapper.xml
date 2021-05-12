@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjJudgeDetailMapper">
+    <sql id="BaseColNames">
+        detail_id,judge_id,judge_result,detail_result,used_memory,used_real_time,used_cpu_time
+    </sql>
+    <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_judge_detail
+        where detail_id = #{detail_id}
+    </select>
+    <select id="selectByJudgeId" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_judge_detail
+        where judge_id = #{judge_id}
+    </select>
+    <insert id="insert" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
+        insert into oj_judge_detail(
+        <include refid="BaseColNames"></include>
+        )
+        values(
+        #{detail_id},
+        #{judge_id},
+        #{judge_result},
+        #{detail_result},
+        #{used_memory},
+        #{used_real_time},
+        #{used_cpu_time}
+        )
+    </insert>
+    <update id="update" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
+        update oj_judge_detail
+        set
+        judge_id=#{judge_id},
+        judge_result=#{judge_result},
+        detail_result=#{detail_result},
+        used_memory=#{used_memory},
+        used_real_time=#{used_real_time},
+        used_cpu_time=#{used_cpu_time}
+        where detail_id=#{detail_id}
+    </update>
+</mapper>

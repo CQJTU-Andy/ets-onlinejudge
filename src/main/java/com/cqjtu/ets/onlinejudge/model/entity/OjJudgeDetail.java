@@ -1,19 +1,19 @@
 package com.cqjtu.ets.onlinejudge.model.entity;
 
 public class OjJudgeDetail {
-    private Long detailId;
+    private Long detail_id=-1L;
 
-    private Long judgeId;
+    private Long judge_id=-1L;
 
-    private String judgeResult;
+    private String judge_result="none";
 
-    private String detailResult;
+    private String detail_result="none";
 
-    private Integer usedMemory;
+    private long used_memory=0;
 
-    private Integer usedRealTime;
+    private double used_real_time=0;
 
-    private Integer usedCpuTime;
+    private double used_cpu_time=0;
 
     public OjJudgeDetail() {
     }
@@ -21,69 +21,70 @@ public class OjJudgeDetail {
     @Override
     public String toString() {
         return "OjJudgeDetail{" +
-                "detailId=" + detailId +
-                ", judgeId=" + judgeId +
-                ", judgeResult='" + judgeResult + '\'' +
-                ", detailResult='" + detailResult + '\'' +
-                ", usedMemory=" + usedMemory +
-                ", usedRealTime=" + usedRealTime +
-                ", usedCpuTime=" + usedCpuTime +
+                "detailId=" + detail_id +
+                ", judgeId=" + judge_id +
+                ", judgeResult='" + judge_result + '\'' +
+                ", detailResult='" + detail_result + '\'' +
+                ", usedMemory=" + used_memory +
+                ", usedRealTime=" + used_real_time +
+                ", usedCpuTime=" + used_cpu_time +
                 '}';
     }
 
-    public Long getDetailId() {
-        return detailId;
+
+    public Long getDetail_id() {
+        return detail_id;
     }
 
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
+    public void setDetail_id(Long detail_id) {
+        this.detail_id = detail_id;
     }
 
-    public Long getJudgeId() {
-        return judgeId;
+    public Long getJudge_id() {
+        return judge_id;
     }
 
-    public void setJudgeId(Long judgeId) {
-        this.judgeId = judgeId;
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
     }
 
-    public String getJudgeResult() {
-        return judgeResult;
+    public String getJudge_result() {
+        return judge_result;
     }
 
-    public void setJudgeResult(String judgeResult) {
-        this.judgeResult = judgeResult == null ? null : judgeResult.trim();
+    public void setJudge_result(String judge_result) {
+        this.judge_result = judge_result;
     }
 
-    public String getDetailResult() {
-        return detailResult;
+    public String getDetail_result() {
+        return detail_result;
     }
 
-    public void setDetailResult(String detailResult) {
-        this.detailResult = detailResult == null ? null : detailResult.trim();
+    public void setDetail_result(String detail_result) {
+        this.detail_result = detail_result;
     }
 
-    public Integer getUsedMemory() {
-        return usedMemory;
+    public long getUsed_memory() {
+        return used_memory;
     }
 
-    public void setUsedMemory(Integer usedMemory) {
-        this.usedMemory = usedMemory;
+    public void setUsed_memory(long used_memory) {
+        this.used_memory = used_memory;
     }
 
-    public Integer getUsedRealTime() {
-        return usedRealTime;
+    public double getUsed_real_time() {
+        return used_real_time;
     }
 
-    public void setUsedRealTime(Integer usedRealTime) {
-        this.usedRealTime = usedRealTime;
+    public void setUsed_real_time(double used_real_time) {
+        this.used_real_time = used_real_time;
     }
 
-    public Integer getUsedCpuTime() {
-        return usedCpuTime;
+    public double getUsed_cpu_time() {
+        return used_cpu_time;
     }
 
-    public void setUsedCpuTime(Integer usedCpuTime) {
-        this.usedCpuTime = usedCpuTime;
+    public void setUsed_cpu_time(double used_cpu_time) {
+        this.used_cpu_time = used_cpu_time;
     }
 }

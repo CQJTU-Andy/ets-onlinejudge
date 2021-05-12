@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjJudgeMapper">
     <sql id="BaseColNames">
-       judge_id,commit_id,start_time,end_time,program_path,output_path,comment
+       judge_id,commit_id,start_time,end_time,program_path,output_path,comment,compile_method
     </sql>
     <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjJudge">
         select
@@ -10,4 +10,31 @@
         from oj_judge
         where judge_id = #{judge_id}
     </select>
+    <select id="selectByCommitId" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjJudge">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_judge
+        where commit_id=#{commit_id}
+    </select>
+    <select id="selectJudgeId" resultType="java.lang.Long">
+        select
+        judge_id
+        from oj_judge
+        order by judge_id desc
+    </select>
+    <insert id="insert" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjJudge">
+        insert into oj_judge(
+        <include refid="BaseColNames"></include>
+        )
+        values(
+        #{judge_id},
+        #{commit_id},
+        #{start_time},
+        #{end_time},
+        #{program_path},
+        #{output_path},
+        #{comment},
+        #{compile_method}
+        )
+    </insert>
 </mapper>

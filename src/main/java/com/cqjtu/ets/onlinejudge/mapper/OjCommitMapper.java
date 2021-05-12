@@ -13,8 +13,10 @@ public interface OjCommitMapper {
 //
 //    int insertSelective(OjCommit record);
 //
-    OjCommit selectByPrimaryKey(Long commit_id);
+    OjCommit selectByPK(Long commit_id);
     List<OjCommit> selectBy(long experiment_id,long student_number_id);
+    List<Long> selectCommitId(); // 降序
+    int insert(OjCommit commit);
 //
 //    int updateByPrimaryKeySelective(OjCommit record);
 //

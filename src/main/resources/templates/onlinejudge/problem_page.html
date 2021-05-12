@@ -1,58 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
 
 <head>
   <meta charset="utf-8">
   <title>upload</title>
+  <link rel="shortcut icon" href="#" />
     <!--  引入css文件-->
     <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/ets/onlinejudge/css/problem_page.css">
     <!---->
 </head>
 
-<body>
+<body class="layui-bg-gray">
 
-<div class="layui-row" id="progress-container">
-  <div class="layui-col-lg12">
-    <div class="layui-progress">
-      <div class="layui-progress-bar" lay-percent="10%"></div>
+  <div class="layui-hide" id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;">
+    <div class="layui-progress" lay-filter="uploadFilesProgress">
+      <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
     </div>
   </div>
-</div>
+
 
 <div class="layui-container">
+    <div class="layui-card" style="margin-top: 20px;">
+      <div class="layui-card-body">
+        <div class="layui-row" id="experiment-title-container">
+          <div class="layui-col-lg12 parent-text-align-center">
+            <!--/*@thymesVar id="experimentId" type="java.lang.Long"*/-->
+            <span id="experimentId" th:text="${experimentId}" style="display: none;"></span>
+            <!--/*@thymesVar id="experimentTitle" type="java.lang.String"*/-->
+            <span id="experiment-title" th:text="${experimentTitle}" style="font-size: 2em;"></span>
+            <!--/*@thymesVar id="judgeStatus" type="java.lang.String"*/-->
+            <!--/*@thymesVar id="judgeStatusColor" type="java.lang.String"*/-->
+            <i class="layui-icon" th:classappend="${judgeStatus}" id="commit-status-icon" th:styleappend="${judgeStatusColor}" style="font-size: 20px;"></i>
 
-  <div class="layui-row regular-border regular-horizontal-padding" id="experiment-basic-info-container">
-    <div class="layui-row" id="experiment-title-container">
-      <div class="layui-col-lg12 parent-text-align-center">
-        <h1 id="experiment-title">链式栈的实现与测试&nbsp
-          <i class="layui-icon layui-icon-ok-circle" id="commit-status-icon" style="color:#0076ff;font-size: 20px;"></i>
-        </h1>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="layui-row parent-text-align-center" id="experiment-limit-container">
+          <!--/*@thymesVar id="pubTime" type="java.lang.String"*/-->
+          <div class="layui-col-lg3" th:text="'发布时间:' + ${pubTime}">
+          </div>
+          <!--/*@thymesVar id="endTime" type="java.lang.String"*/-->
+          <div class="layui-col-lg3" th:text="' 截止时间:' + ${endTime}">
+          </div>
+          <!--/*@thymesVar id="cpuTimeLimited" type="java.lang.Integer"*/-->
+          <div class="layui-col-lg3" th:text="'CPU 时间限制:' + ${cpuTimeLimited} + 'ms'">
+            <i class="layui-icon layui-icon-about"></i>
+          </div>
+          <!--/*@thymesVar id="memoryTimeLimited" type="java.lang.Integer"*/-->
+          <div class="layui-col-lg3" th:text="'内存占用限制:' + ${memoryTimeLimited} + 'KB'">
+            <i class="layui-icon layui-icon-about"></i>
+          </div>
+        </div>
       </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <div class="layui-row parent-text-align-center" id="experiment-limit-container">
-      <div class="layui-col-lg3">
-        发布时间:2021.5.21 20:00
-      </div>
-      <div class="layui-col-lg3">
-        截止时间:2021.5.23 20:00
-      </div>
-      <div class="layui-col-lg3">
-        <i class="layui-icon layui-icon-about"></i> CPU 时间限制:5000ms
-      </div>
-      <div class="layui-col-lg3">
-        <i class="layui-icon layui-icon-about"></i> 内存占用限制:5000KB
-      </div>
-    </div>
-  </div>
+
 
 
   <div class="layui-row regular-border" id="experiment-other-info-container">
 
-    <div class="layui-col-lg6 layui-bg-gray" id="problem-container">
+    <div class="layui-col-lg6" id="problem-container" style="height:730px;overflow-y: auto;">
 
       <div class="layui-row"  id="problem-detail-container">
         <div class="layui-card">
@@ -60,12 +69,8 @@
             <h3><strong>题目描述</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
-            <p>
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
-              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+            <!--/*@thymesVar id="problemDetail" type="java.lang.String"*/-->
+            <p th:text="${programmingProblem.getProblem_detail()}">
             </p>
           </div>
         </div>
@@ -78,11 +83,8 @@
             <h3><strong>输入描述</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
-            <p>
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
-              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+            <!--/*@thymesVar id="inputDescription" type="java.lang.String"*/-->
+            <p th:text="${programmingProblem.getInput_description()}">
             </p>
           </div>
         </div>
@@ -95,8 +97,8 @@
             <h3><strong>输出描述</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
-            <p>
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
+            <!--/*@thymesVar id="outputDescription" type="java.lang.String"*/-->
+            <p th:text="${programmingProblem.getOutput_description()}">
             </p>
           </div>
         </div>
@@ -109,10 +111,8 @@
             <h3><strong>输入输出示例</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
-            <p>
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙，
-              如果是键入多个“空格”键，但最终也只显示一个空格间隙。 这个时候我们就需要真正的空格字符代码
-              在html 网页中一个空格，我们可以键入“空格”键即可实现。 如果在html 中想实现多个空格间隙
+            <!--/*@thymesVar id="ioSample" type="java.lang.String"*/-->
+            <p th:text="${programmingProblem.getIo_sample()}">
             </p>
           </div>
         </div>
@@ -125,8 +125,8 @@
             <h3><strong>提示</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
-            <p>
-              没啥提示，自己想吧
+            <!--/*@thymesVar id="tips" type="java.lang.String"*/-->
+            <p th:text="${programmingProblem.getTips()}">
             </p>
           </div>
         </div>
@@ -135,27 +135,110 @@
 
     <div class="layui-col-lg6" id="judge-container" style="padding: 10px;">
 
-      <div class="layui-row">
+
+
+      <div class="layui-card">
+        <div class="layui-card-body">
+          <div class="layui-row">
+            <div class="layui-col-lg12" style="height: 200px; overflow-y: auto;">
+              <!--          <table id="chosen-files-table"></table>-->
+              <table class="layui-table" style="padding: 10px;">
+                <thead>
+                <tr>
+                  <th>文件名</th>
+                  <th>大小</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="fileListBody">
+                <tr th:each="file:${uploadedFilesList}">
+                  <td class="layui-table-cell laytable-cell-1-0-0" th:text="${file.getFileName()}"></td>
+                  <td class="layui-table-cell laytable-cell-1-0-0" th:text="${file.getFileSizeStr()}"></td>
+                  <td class="layui-table-cell laytable-cell-1-0-0"><span style="color: #5FB878;">已上传</span></td>
+                  <td></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <br>
+
+          <div class="layui-row" id="choose-upload-row">
+            <div class="layui-col-lg8">
+              <!--/*@thymesVar id="chooseFileAvailable" type="java.lang.String"*/-->
+              <button type="button" class="layui-btn layui-btn-radius layui-btn-normal layui-btn-fluid" th:classappend="${chooseFileAvailable}" id="choose-file-btn">
+                <i class="layui-icon">&#xe67c;</i>拖拽文件到此处或选择文件
+              </button>
+            </div>
+            <div class="layui-col-lg4" style="padding-left: 3px;">
+              <button class="layui-btn layui-btn-radius layui-btn-warm layui-btn-fluid" th:classappend="${uploadAvailable}" id="upload-btn">上传</button>
+            </div>
+          </div>
+          <br>
+
+          <div class="layui-row">
+            <div class="layui-col-lg3">
+              <button class="layui-btn" id="compile-method-btn" style="margin-left: 5px;">
+                <span compile-method-id="1" id="compile-method-text">编译方式</span><i class="layui-icon layui-icon-down layui-font-12"></i>
+              </button>
+            </div>
+
+            <div class="layui-col-lg8">
+                <button class="layui-btn layui-btn-primary layui-btn-fluid" th:classappend="${judgeAvailable}" id="judge-btn">
+                  <i id="judge_loading_icon" class="layui-icon layui-icon-loading layui-hide" style="font-size: 20px;color:#009688"></i>
+                  <span id="judge-status-text">开始评测</span>
+                </button>
+            </div>
+
+            <div class="layui-col-lg1">
+              <i id="program-args-help-icon" class="layui-icon layui-icon-about" style="font-size: 24px;position: absolute;left:8px;top: 8px;cursor: pointer"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="layui-row layui-hide" id="compile-info-panel" style="position: relative;">
+        <div class="layui-col-lg12" style="height: 200px; overflow: auto;">
+          <div class="layui-card">
+          <div class="layui-card-body">
+              <p id="compile-info" style="padding-left: 10px;padding-top: 25px;">
+              </p>
+            <button id="detail-popup-btn" class="layui-btn layui-btn-primary" style="position: absolute;right: 10px;top: 1px;">详情</button>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="layui-row layui-hide" id="run-info-panel">
         <div class="layui-col-lg12">
-          <table id="chosen-files-table"></table>
+          <div class="layui-card">
+            <div class="layui-card-header">
+              <i id="run-info-panel-icon" class="layui-icon layui-icon-console" style="color:#FF9966;font-size: 1em;"></i>
+              资源占用情况&nbsp
+              <i id="resource-help-icon" class="layui-icon layui-icon-about" style="cursor: pointer;font-size: 24px; position: absolute;"></i>
+            </div>
+            <div class="layui-card-body" id="run-info-panel-body">
+              <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  总时间：<span id="real-time"></span>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  CPU时间：<span id="cpu-time"></span>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  总内存占用：<span id="memory"></span>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  栈占用：<span id="stack"></span>
+                </button>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="layui-row">
-        <div class="layui-col-lg6">
-          <button type="button" class="layui-btn layui-btn-radius layui-btn-normal layui-btn-fluid" id="choose-file-btn">
-            <i class="layui-icon">&#xe67c;</i>拖拽文件到此处或选择文件
-          </button>
-        </div>
-        <div class="layui-col-lg2" style="padding-left: 3px;">
-          <button class="layui-btn layui-btn-radius layui-btn-warm layui-btn-disabled" id="upload-btn">上传</button>
-        </div>
-        <div class="layui-col-lg4">
-          <button class="layui-btn layui-btn-primary layui-btn-disabled layui-btn-fluid" id="judge-btn">开始评测</button>
-        </div>
-      </div>
-
-
 
     </div>
 

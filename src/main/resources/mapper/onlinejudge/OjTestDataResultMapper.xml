@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjTestDataResultMapper">
+    <sql id="BaseColNames">
+        test_data_id,detail_id,test_data_file_path,
+        matching_words_number,lost_words_number,abundant_words_number
+    </sql>
+    <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjTestDataResult">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_test_data_result
+        where test_data_id = #{test_data_id}
+    </select>
+</mapper>

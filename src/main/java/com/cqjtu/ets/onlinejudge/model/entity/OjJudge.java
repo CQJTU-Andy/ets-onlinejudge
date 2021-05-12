@@ -3,82 +3,95 @@ package com.cqjtu.ets.onlinejudge.model.entity;
 import java.util.Date;
 
 public class OjJudge {
-    private Long judgeId;
+    private Long judge_id=-1L;
 
-    private Long commitId;
+    private Long commit_id=-1L;
 
-    private Date startTime;
+    private Date start_time=new Date();
 
-    private Date endTime;
+    private Date end_time = new Date();
 
-    private String programPath;
+    private String program_path="none";
 
-    private String outputPath;
+    private String output_path="none";
 
-    private String comment;
+    private String comment="none";
+
+    /**
+     * 1.普通编译 2.make 3.cmake
+     */
+    private int compile_method=1;
 
     public OjJudge() {
+    }
+
+    public int getCompile_method() {
+        return compile_method;
+    }
+
+    public void setCompile_method(int compile_method) {
+        this.compile_method = compile_method;
     }
 
     @Override
     public String toString() {
         return "OjJudge{" +
-                "judgeId=" + judgeId +
-                ", commitId=" + commitId +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", programPath='" + programPath + '\'' +
-                ", outputPath='" + outputPath + '\'' +
+                "judgeId=" + judge_id +
+                ", commitId=" + commit_id +
+                ", startTime=" + start_time +
+                ", endTime=" + end_time +
+                ", programPath='" + program_path + '\'' +
+                ", outputPath='" + output_path + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
     }
 
-    public Long getJudgeId() {
-        return judgeId;
+    public Long getJudge_id() {
+        return judge_id;
     }
 
-    public void setJudgeId(Long judgeId) {
-        this.judgeId = judgeId;
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
     }
 
-    public Long getCommitId() {
-        return commitId;
+    public Long getCommit_id() {
+        return commit_id;
     }
 
-    public void setCommitId(Long commitId) {
-        this.commitId = commitId;
+    public void setCommit_id(Long commit_id) {
+        this.commit_id = commit_id;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getStart_time() {
+        return start_time;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStart_time(Date start_time) {
+        this.start_time = start_time;
     }
 
-    public Date getEndTime() {
-        return endTime;
+    public Date getEnd_time() {
+        return end_time;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public void setEnd_time(Date end_time) {
+        this.end_time = end_time;
     }
 
-    public String getProgramPath() {
-        return programPath;
+    public String getProgram_path() {
+        return program_path;
     }
 
-    public void setProgramPath(String programPath) {
-        this.programPath = programPath == null ? null : programPath.trim();
+    public void setProgram_path(String program_path) {
+        this.program_path = program_path == null ? null : program_path.trim();
     }
 
-    public String getOutputPath() {
-        return outputPath;
+    public String getOutput_path() {
+        return output_path;
     }
 
-    public void setOutputPath(String outputPath) {
-        this.outputPath = outputPath == null ? null : outputPath.trim();
+    public void setOutput_path(String output_path) {
+        this.output_path = output_path == null ? null : output_path.trim();
     }
 
     public String getComment() {

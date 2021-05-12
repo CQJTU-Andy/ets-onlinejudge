@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OjProgrammingProblemMapper {
-    OjProgrammingProblem selectByPrimaryKey(long problem_id);
+    OjProgrammingProblem selectByPK(long problem_id);
 }

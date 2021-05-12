@@ -4,15 +4,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class OjCommit {
-    private Long commit_id;
+    private Long commit_id=-1L;
 
-    private Long experiment_id;
+    private Long experiment_id=-1L;
 
-    private Long student_number_id;
+    private Long student_number_id=-1L;
 
-    private Date commit_time;
+    private Date commit_time=new Date();
 
-    private String file_path;
+    private String file_path="none";
 
     public OjCommit() {
     }
