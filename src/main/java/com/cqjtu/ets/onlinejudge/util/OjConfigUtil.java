@@ -17,6 +17,7 @@ public class OjConfigUtil {
         createIfNotExists(userHome+judgeExeFilePath);
         createIfNotExists(userHome+codePath);
         createIfNotExists(userHome+problemPath);
+        createIfNotExists(userHome+sjCodePath);
     }
 
     @Value("${oj.config.judgeOutputFilePath}")
@@ -30,6 +31,9 @@ public class OjConfigUtil {
 
     @Value("${oj.config.problemPath}")
     private String problemPath;
+
+    @Value("${oj.config.sjCodePath}")
+    private String sjCodePath; //自定义评判代码路径
 
     @Value("${oj.config.defaultLimitedCPUTime}")
     private long defaultLimitedCPUTime; // ms
@@ -48,6 +52,45 @@ public class OjConfigUtil {
 
     @Value("${oj.config.sysCallFilterMode}")
     private int sysCallFilterMode;
+
+    @Value("${oj.score.great}")
+    private float great;
+    @Value("${oj.score.good}")
+    private float good;
+    @Value("${oj.score.pass}")
+    private float pass;
+
+    public float getGreat() {
+        return great;
+    }
+
+    public void setGreat(float great) {
+        this.great = great;
+    }
+
+    public float getGood() {
+        return good;
+    }
+
+    public void setGood(float good) {
+        this.good = good;
+    }
+
+    public float getPass() {
+        return pass;
+    }
+
+    public void setPass(float pass) {
+        this.pass = pass;
+    }
+
+    public String getSjCodePath() {
+        return sjCodePath;
+    }
+
+    public void setSjCodePath(String sjCodePath) {
+        this.sjCodePath = sjCodePath;
+    }
 
     public String getJudgeOutputFilePath() {
         return judgeOutputFilePath;

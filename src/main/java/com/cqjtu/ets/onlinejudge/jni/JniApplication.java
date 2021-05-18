@@ -12,7 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JniApplication {
     static {
-        System.loadLibrary("judge");
+        try{
+            System.loadLibrary("judge");
+        }catch (java.lang.UnsatisfiedLinkError e){
+            e.printStackTrace();
+            log.error("加载动态库时发生错误.");
+        }
     }
 
     public native CompileResult compile(JudgeConfig config);

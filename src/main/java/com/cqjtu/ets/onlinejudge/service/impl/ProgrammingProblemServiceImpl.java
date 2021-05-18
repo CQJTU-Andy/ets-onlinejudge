@@ -16,4 +16,9 @@ public class ProgrammingProblemServiceImpl implements ProgrammingProblemService 
     public OjProgrammingProblem getProgrammingProblemByPK(long problem_id) {
        return programmingProblemMapper.selectByPK(problem_id);
     }
+
+    @Override
+    public int updateIsCompiled(OjProgrammingProblem problem) {
+        return programmingProblemMapper.updateIsCompiled(problem);
+    }
 }

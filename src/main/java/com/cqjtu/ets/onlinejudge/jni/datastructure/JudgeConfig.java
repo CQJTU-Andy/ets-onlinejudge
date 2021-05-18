@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class JudgeConfig {
     String codePath = ""; // 源代码文件路径
     SourceFileType fileType; //源文件类型，帮助调用相应编译器
-    int compileMethod; // 编译方法 1:普通编译 2.CMakeLists.txt 3.makefile.txt
+    int compileMethod; // 编译方法 1:普通编译 2.makefile.txt
     String exePath; // 可执行文件所在路径
     String[] programArgs; //被测程序的命令行参数
 

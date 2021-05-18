@@ -2,13 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjTestDataResultMapper">
     <sql id="BaseColNames">
-        test_data_id,detail_id,test_data_file_path,
-        matching_words_number,lost_words_number,abundant_words_number
+        test_data_id,detail_id,test_data_file_path,line_number,score,hit_number
     </sql>
     <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjTestDataResult">
         select
         <include refid="BaseColNames"></include>
         from oj_test_data_result
         where test_data_id = #{test_data_id}
+    </select>
+    <insert id="insert" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjTestDataResult">
+        insert into oj_test_data_result
+        (<include refid="BaseColNames"></include>)
+        values(
+               #{test_data_id},
+               #{detail_id},
+               #{test_data_file_path},
+               #{line_number},
+               #{score},
+               #{hit_number}
+              )
+
+    </insert>
+    <select id="selectDataResultId" resultType="java.lang.Long">
+        select test_data_id
+        from oj_test_data_result
+        order by test_data_id desc
+    </select>
+    <select id="getResultByDetailId" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjTestDataResult">
+        select
+        <include refid="BaseColNames"></include>
+        from oj_test_data_result
+        where detail_id = #{detail_id}
     </select>
 </mapper>

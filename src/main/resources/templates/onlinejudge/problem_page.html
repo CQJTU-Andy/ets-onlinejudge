@@ -3,24 +3,26 @@
 
 <head>
   <meta charset="utf-8">
-  <title>upload</title>
+  <title>实验评测</title>
   <link rel="shortcut icon" href="#" />
     <!--  引入css文件-->
     <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/ets/onlinejudge/css/problem_page.css">
-    <!---->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">
 </head>
+
+<div id="text-editor" class="layui-hide" style="width: 800px;padding-left: 1px;"></div>
 
 <body class="layui-bg-gray">
 
-  <div class="layui-hide" id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;">
+  <div class="layui-hide" id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;z-index: 100;">
     <div class="layui-progress" lay-filter="uploadFilesProgress">
       <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
     </div>
   </div>
 
 
-<div class="layui-container">
+  <div class="layui-container">
     <div class="layui-card" style="margin-top: 20px;">
       <div class="layui-card-body">
         <div class="layui-row" id="experiment-title-container">
@@ -61,7 +63,7 @@
 
   <div class="layui-row regular-border" id="experiment-other-info-container">
 
-    <div class="layui-col-lg6" id="problem-container" style="height:730px;overflow-y: auto;">
+    <div class="layui-col-lg6" id="problem-container" style="height:800px;overflow-y: auto;">
 
       <div class="layui-row"  id="problem-detail-container">
         <div class="layui-card">
@@ -133,7 +135,7 @@
       </div>
     </div>
 
-    <div class="layui-col-lg6" id="judge-container" style="padding: 10px;">
+    <div class="layui-col-lg6" id="judge-container" style="height:800px;padding: 10px;overflow-y: auto;">
 
 
 
@@ -142,7 +144,7 @@
           <div class="layui-row">
             <div class="layui-col-lg12" style="height: 200px; overflow-y: auto;">
               <!--          <table id="chosen-files-table"></table>-->
-              <table class="layui-table" style="padding: 10px;">
+              <table id="file-list-table" lay-filter="table" class="layui-table" style="padding: 10px;">
                 <thead>
                 <tr>
                   <th>文件名</th>
@@ -211,7 +213,8 @@
         </div>
       </div>
 
-      <div class="layui-row layui-hide" id="run-info-panel">
+      <!--/*@thymesVar id="runInfoPanelAvailable" type="java.lang.String"*/-->
+      <div class="layui-row" th:classappend="${runInfoPanelAvailable}" id="run-info-panel">
         <div class="layui-col-lg12">
           <div class="layui-card">
             <div class="layui-card-header">
@@ -222,22 +225,41 @@
             <div class="layui-card-body" id="run-info-panel-body">
               <div class="layui-btn-container">
                 <button class="layui-btn layui-btn-primary layui-border-blue">
-                  总时间：<span id="real-time"></span>
+                  总时间：<span id="real-time" th:text="${judgeDetail!=null?T(java.lang.String).format('%.2f',judgeDetail.getUsed_real_time()*1000)+' ms':''}"></span>
                 </button>
                 <button class="layui-btn layui-btn-primary layui-border-blue">
-                  CPU时间：<span id="cpu-time"></span>
+                  CPU时间：<span id="cpu-time" th:text="${judgeDetail!=null?T(java.lang.String).format('%.2f',judgeDetail.getUsed_cpu_time()*1000)+' ms':''}"></span>
                 </button>
                 <button class="layui-btn layui-btn-primary layui-border-blue">
-                  总内存占用：<span id="memory"></span>
+                  总内存：<span id="memory" th:text="${judgeDetail!=null?judgeDetail.getUsed_memory()+' kB':''}"></span>
                 </button>
                 <button class="layui-btn layui-btn-primary layui-border-blue">
-                  栈占用：<span id="stack"></span>
+                  栈：<span id="stack" th:text="${judgeDetail!=null?judgeDetail.getUsed_stack()+' kB':''}"></span>
                 </button>
-
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  数据段：<span id="data" th:text="${judgeDetail!=null?judgeDetail.getUsed_data()+' kB':''}"></span>
+                </button>
+                <button class="layui-btn layui-btn-primary layui-border-blue">
+                  二进制文件大小：<span id="exe-size" th:text="${judgeDetail!=null?judgeDetail.getUsed_exe_size()+' kB':''}"></span>
+                </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <br>
+
+      <div class="layui-row" th:classappend="${gradeInfoPanelAvailable}" id="grade-info-panel">
+        <div class="layui-col-lg12">
+          <div class="layui-card">
+            <div class="layui-card-header">
+              <i id="grade-info-panel-icon" class="layui-icon layui-icon-form" style="color:#FF9966;font-size: 1em;"></i>
+              评测分数&nbsp
+              <span style="font-size: 1.5em;color:#1E9FFF" id="judge-score-text"></span>
+            </div>
+            <div class="layui-card-body" id="grade-info-panel-body" th:utext="${gradeInfoStr}">
+            </div>
+          </div>
       </div>
 
     </div>
@@ -246,13 +268,18 @@
 
 </div>
 
+  </div>
 
-
-<!--引入js文件-->
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.0.0-alpha0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
 <script src="/ets/onlinejudge/js/problem_page.js"></script>
-<!---->
+<script>
+
+</script>
+
 
 </body>
+
 </html>

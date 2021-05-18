@@ -7,25 +7,43 @@ public class OjTestDataResult {
 
     private String test_data_file_path="none";
 
-    private Integer matching_words_number=0;
+    private long line_number=0; //总行数
 
-    private Integer lost_words_number=0;
+    private long hit_number=0; //命中行数
 
-    private Integer abundant_words_number=0;
+    private float score=-1; // 该组数据得分（满分100)
+
+    public long getHit_number() {
+        return hit_number;
+    }
+
+    public void setHit_number(long hit_number) {
+        this.hit_number = hit_number;
+    }
 
     public OjTestDataResult() {
     }
 
-    @Override
-    public String toString() {
-        return "OjTestDataResult{" +
-                "testDataId=" + test_data_id +
-                ", detailId=" + detail_id +
-                ", testDataFilePath='" + test_data_file_path + '\'' +
-                ", matchingWordsNumber=" + matching_words_number +
-                ", lostWordsNumber=" + lost_words_number +
-                ", abundantWordsNumber=" + abundant_words_number +
-                '}';
+    public OjTestDataResult(long line_number, long hit_number, float score) {
+        this.line_number = line_number;
+        this.hit_number = hit_number;
+        this.score = score;
+    }
+
+    public long getLine_number() {
+        return line_number;
+    }
+
+    public void setLine_number(long line_number) {
+        this.line_number = line_number;
+    }
+
+    public float getScore() {
+        return score;
+    }
+
+    public void setScore(float score) {
+        this.score = score;
     }
 
     public Long getTest_data_id() {
@@ -50,29 +68,5 @@ public class OjTestDataResult {
 
     public void setTest_data_file_path(String test_data_file_path) {
         this.test_data_file_path = test_data_file_path == null ? null : test_data_file_path.trim();
-    }
-
-    public Integer getMatching_words_number() {
-        return matching_words_number;
-    }
-
-    public void setMatching_words_number(Integer matching_words_number) {
-        this.matching_words_number = matching_words_number;
-    }
-
-    public Integer getLost_words_number() {
-        return lost_words_number;
-    }
-
-    public void setLost_words_number(Integer lost_words_number) {
-        this.lost_words_number = lost_words_number;
-    }
-
-    public Integer getAbundant_words_number() {
-        return abundant_words_number;
-    }
-
-    public void setAbundant_words_number(Integer abundant_words_number) {
-        this.abundant_words_number = abundant_words_number;
     }
 }

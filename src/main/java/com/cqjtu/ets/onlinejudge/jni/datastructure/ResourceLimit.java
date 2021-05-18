@@ -20,14 +20,27 @@ public class ResourceLimit {
     @Value("${oj.config.defaultLimitedOutputSize}")
     long outputSize; // kbyte
 
+    long data;//数据段
 
+    long exeSize;//二进制文件大小
+
+    public long getExeSize() {
+        return exeSize;
+    }
+
+    public void setExeSize(long exeSize) {
+        this.exeSize = exeSize;
+    }
 
     public ResourceLimit(){
-//        cpuTime = 0; // seconds
-//        realTime = 20;// seconds
-//        memory = 5000; // KB
-//        outputSize = 200; // KB
-//        stack = 2000; // KB
+    }
+
+    public long getData() {
+        return data;
+    }
+
+    public void setData(long data) {
+        this.data = data;
     }
 
     public double getCpuTime() {

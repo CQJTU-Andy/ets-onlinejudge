@@ -14,9 +14,29 @@ public class ControllerResult {
      * 6: RE, //Runtime Error
      */
     int status=-1;
-    int returnValue;
+    int returnValue=-1;
     ResourceLimit usedResourceLimit; //程序实际所用资源
     String errorStr; // 返回给前台的错误信息
+
+    // 返回给客户端的数据
+    long judgeId;
+    long detailId;
+
+    public long getDetailId() {
+        return detailId;
+    }
+
+    public void setDetailId(long detailId) {
+        this.detailId = detailId;
+    }
+
+    public long getJudgeId() {
+        return judgeId;
+    }
+
+    public void setJudgeId(long judgeId) {
+        this.judgeId = judgeId;
+    }
 
     public ControllerResult(){
         usedResourceLimit = new ResourceLimit();

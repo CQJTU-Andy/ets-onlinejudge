@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cqjtu.ets.onlinejudge.mapper.OjJudgeDetailMapper">
     <sql id="BaseColNames">
-        detail_id,judge_id,judge_result,detail_result,used_memory,used_real_time,used_cpu_time
+        detail_id,judge_id,judge_result,score,detail_result,used_memory,used_real_time,used_cpu_time,
+        used_stack,used_data,used_output_size,used_exe_size
     </sql>
     <select id="selectByPK" parameterType="java.lang.Long" resultType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
         select
@@ -24,21 +25,27 @@
         #{detail_id},
         #{judge_id},
         #{judge_result},
+        #{score},
         #{detail_result},
         #{used_memory},
         #{used_real_time},
-        #{used_cpu_time}
+        #{used_cpu_time},
+        #{used_stack},#{used_data},#{used_output_size},#{used_exe_size}
         )
     </insert>
     <update id="update" parameterType="com.cqjtu.ets.onlinejudge.model.entity.OjJudgeDetail">
         update oj_judge_detail
         set
-        judge_id=#{judge_id},
         judge_result=#{judge_result},
+        score=#{score},
         detail_result=#{detail_result},
         used_memory=#{used_memory},
         used_real_time=#{used_real_time},
-        used_cpu_time=#{used_cpu_time}
+        used_cpu_time=#{used_cpu_time},
+        used_stack=#{used_stack},
+        used_data=#{used_data},
+        used_output_size=#{used_output_size},
+        used_exe_size=#{used_exe_size}
         where detail_id=#{detail_id}
     </update>
 </mapper>

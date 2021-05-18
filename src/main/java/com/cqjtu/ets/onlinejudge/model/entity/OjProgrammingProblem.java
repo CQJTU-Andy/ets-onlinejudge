@@ -29,26 +29,37 @@ public class OjProgrammingProblem {
 
     private String problem_detail="none";
 
+    private int special_judge;//0:false 1:true
+
+    private String sj_code_path="";
+
+    private int is_compiled=0; //0:false 1:true
+
     public OjProgrammingProblem() {
     }
 
-    @Override
-    public String toString() {
-        return "OjProgrammingProblem{" +
-                "problem_id=" + problem_id +
-                ", problem_name='" + problem_name + '\'' +
-                ", input_description='" + input_description + '\'' +
-                ", output_description='" + output_description + '\'' +
-                ", test_input_dataPath='" + test_input_data_Path + '\'' +
-                ", test_output_dataPath='" + test_output_data_Path + '\'' +
-                ", io_sample='" + io_sample + '\'' +
-                ", tips='" + tips + '\'' +
-                ", created_time=" + created_time +
-                ", cpu_time_limited=" + cpu_time_limited +
-                ", real_time_limited=" + real_time_limited +
-                ", memory_limited=" + memory_limited +
-                ", problem_detail='" + problem_detail + '\'' +
-                '}';
+    public int getIs_compiled() {
+        return is_compiled;
+    }
+
+    public void setIs_compiled(int is_compiled) {
+        this.is_compiled = is_compiled;
+    }
+
+    public int getSpecial_judge() {
+        return special_judge;
+    }
+
+    public void setSpecial_judge(int special_judge) {
+        this.special_judge = special_judge;
+    }
+
+    public String getSj_code_path() {
+        return sj_code_path;
+    }
+
+    public void setSj_code_path(String sj_code_path) {
+        this.sj_code_path = sj_code_path;
     }
 
     public String getIo_sample() {
