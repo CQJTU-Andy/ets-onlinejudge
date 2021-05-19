@@ -25,9 +25,6 @@ import java.util.*;
 public class JudgePageController {
 
     @Autowired
-    private JudgePageService judgePageService;
-
-    @Autowired
     private CommitService commitService;
 
     @Autowired
@@ -74,9 +71,8 @@ public class JudgePageController {
          * 2.3 数据库实验表获取数据，显示发布、截止时间，题目性能限制，题目详情
          */
 //        long experiment_id = Long.parseLong(req.getParameter("eid"));
-        long experiment_id = 2;
-        dataModel.addAttribute("experimentId",experiment_id);
-        dataModel.addAttribute("experimentTitle","链式栈的实现与测试");
+        long experiment_id = 1;
+//        dataModel.addAttribute("experimentId",experiment_id);
         dataModel.addAttribute("runInfoPanelAvailable","layui-hide");
         dataModel.addAttribute("gradeInfoPanelAvailable","layui-hide");
 

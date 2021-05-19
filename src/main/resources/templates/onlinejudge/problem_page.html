@@ -15,9 +15,9 @@
 
 <body class="layui-bg-gray">
 
-  <div class="layui-hide" id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;z-index: 100;">
+  <div id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;z-index: 100;">
     <div class="layui-progress" lay-filter="uploadFilesProgress">
-      <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+      <div class="layui-progress-bar layui-bg-green" lay-percent="100%"></div>
     </div>
   </div>
 
@@ -28,9 +28,9 @@
         <div class="layui-row" id="experiment-title-container">
           <div class="layui-col-lg12 parent-text-align-center">
             <!--/*@thymesVar id="experimentId" type="java.lang.Long"*/-->
-            <span id="experimentId" th:text="${experimentId}" style="display: none;"></span>
+            <span id="experimentId" th:text="${programmingProblem.getProblem_id()}" style="display: none;"></span>
             <!--/*@thymesVar id="experimentTitle" type="java.lang.String"*/-->
-            <span id="experiment-title" th:text="${experimentTitle}" style="font-size: 2em;"></span>
+            <span id="experiment-title" th:text="${programmingProblem.getProblem_name()}" style="font-size: 2em;"></span>
             <!--/*@thymesVar id="judgeStatus" type="java.lang.String"*/-->
             <!--/*@thymesVar id="judgeStatusColor" type="java.lang.String"*/-->
             <i class="layui-icon" th:classappend="${judgeStatus}" id="commit-status-icon" th:styleappend="${judgeStatusColor}" style="font-size: 20px;"></i>
@@ -41,18 +41,14 @@
         <br>
         <br>
         <div class="layui-row parent-text-align-center" id="experiment-limit-container">
-          <!--/*@thymesVar id="pubTime" type="java.lang.String"*/-->
-          <div class="layui-col-lg3" th:text="'发布时间:' + ${pubTime}">
+          <div class="layui-col-lg3" th:text="'发布时间:' + ${programmingProblem.getCreated_time()}">
           </div>
-          <!--/*@thymesVar id="endTime" type="java.lang.String"*/-->
-          <div class="layui-col-lg3" th:text="' 截止时间:' + ${endTime}">
+          <div class="layui-col-lg3" th:text="' 截止时间:' + ${programmingProblem.getEnd_time()}">
           </div>
-          <!--/*@thymesVar id="cpuTimeLimited" type="java.lang.Integer"*/-->
-          <div class="layui-col-lg3" th:text="'CPU 时间限制:' + ${cpuTimeLimited} + 'ms'">
+          <div class="layui-col-lg3" th:text="'CPU 时间限制:' + ${programmingProblem.getCpu_time_limited()} + 'ms'">
             <i class="layui-icon layui-icon-about"></i>
           </div>
-          <!--/*@thymesVar id="memoryTimeLimited" type="java.lang.Integer"*/-->
-          <div class="layui-col-lg3" th:text="'内存占用限制:' + ${memoryTimeLimited} + 'KB'">
+          <div class="layui-col-lg3" th:text="'内存占用限制:' + ${programmingProblem.getMemory_limited()} + 'KB'">
             <i class="layui-icon layui-icon-about"></i>
           </div>
         </div>

@@ -39,9 +39,6 @@ import static com.cqjtu.ets.onlinejudge.jni.result.CompileResult.OK;
 public class DataController {
 
     @Autowired
-    private JudgePageService judgePageService;
-
-    @Autowired
     private CommitService commitService;
 
     @Autowired

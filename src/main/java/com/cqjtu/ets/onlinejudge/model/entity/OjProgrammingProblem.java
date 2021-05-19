@@ -19,7 +19,7 @@ public class OjProgrammingProblem {
 
     private String tips="none";
 
-    private Date created_time=new Date();
+    private Date created_time = new Date();
 
     private Integer cpu_time_limited=0;
 
@@ -35,7 +35,17 @@ public class OjProgrammingProblem {
 
     private int is_compiled=0; //0:false 1:true
 
+    private Date end_time = new Date();
+
     public OjProgrammingProblem() {
+    }
+
+    public Date getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(Date end_time) {
+        this.end_time = end_time;
     }
 
     public int getIs_compiled() {
