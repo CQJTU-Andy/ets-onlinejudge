@@ -11,12 +11,16 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
     const dropdown = layui.dropdown;
     const layuiUtil = layui.util;
     const layuiElement = layui.element;
-    layui.code(); //引用code方法
     const upload = layui.upload; // 加载upload模块
     const table = layui.table;
     const layer = layui.layer;
-    const textEditor = $("#text-editor");
-
+    const textDisplayer = $("#text-displayer");
+    layui.code({
+        elem:"#text-displayer",
+        title:"浏览",
+        encode:true,
+        about:true
+    }); //引用code方法
     // 文件大小限制提示框
     let fileSizeLimitTips;
     var chooseFileBtn = $("#choose-file-btn");
@@ -29,6 +33,7 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
     var loadingIcon = $("#judge_loading_icon");
     var statusText = $("#judge-status-text");
     var compileInfo = $("#compile-info")
+    var compileInfoPanel = $("#compile-info-panel");
 
     // 配置upload模块
     var firstTimeDoneUpload = true;
@@ -96,15 +101,8 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
                         //查看
                         tr.find('.demo-lookup').on('click',function () {
                             let preCode;
-                            if(file.name.split('.')[1] === 'c'){
-                                preCode = '<pre><code class="c">';
-                            }else if(file.name.split('.')[1] === 'cpp' || file.name.split('.')[1] === 'h'){
-                                preCode = '<pre><code class="cpp">';
-                            }else if(file.name.split('.')[1] === 'txt'){
-                                preCode = '<pre>';
-                            }else{ //不支持预览的文件
-                                return;
-                            }
+
+                            // }else if(file.name.split('.')[1] === 'cpp' || file.name.split('.')[1] === 'h'){
 
                             const fileReader = new FileReader();
                             let preCode2 = preCode;
@@ -115,52 +113,43 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
 
                                 fileReader.readAsText(file),fileReader.onload=function () {
                                     const decodeData = this.result;
-                                    if(file.name.split('.')[1] === 'txt'){
-                                        preCode = preCode + decodeData + '</pre>';
-                                        preCode2 = preCode2 + GBData + '</pre>';
-                                    }else{
-                                        preCode = preCode + decodeData + '</code></pre>';
-                                        preCode2 = preCode2 + GBData + '</code></pre>';
-                                    }
 
-                                    // editor.create();
-                                    // editor.txt.html(preCode);//渲染文本
-                                    console.log(preCode);
-                                    textEditor.html(preCode);
-                                    hljs.highlightAll();
-                                    textEditor.removeClass("layui-hide");
+                                    textDisplayer.text(decodeData);
+                                    preCode2 = GBData;
+
+                                    textDisplayer.removeClass("layui-hide");
                                     layer.open({
                                         type:1,
                                         title:[file.name,'font-size:18px;'],
-                                        content:textEditor,
+                                        content:textDisplayer,
                                         resize:false,
                                         scrollbar:false,
-                                        area:['800px','800px'],
+                                        area:['800px','400px'],
                                         skin:'layui-layer-lan',
                                         maxmin:true,
                                         min:function () {
 
                                         },
                                         full:function () {
-                                            textEditor.width(1920);
+                                            textDisplayer.width(1920);
                                         },
                                         restore:function () {
-                                            textEditor.width(800);
+                                            textDisplayer.width(800);
                                         },
                                         end:function () {
-                                            textEditor.addClass("layui-hide");
+                                            textDisplayer.addClass("layui-hide");
                                             // editor.txt.clear();
                                         },
                                         btn:['中文乱码?'],
                                         yes:function () {
                                             if(charsetFlag === 1){
-                                                textEditor.html(preCode2);
+                                                textDisplayer.text(preCode2);
                                                 charsetFlag = 2;
                                             }else if(charsetFlag===2){
-                                                textEditor.html(preCode);
+                                                textDisplayer.text(preCode);
                                                 charsetFlag = 1;
                                             }
-                                            hljs.highlightAll();
+                                            // hljs.highlightAll();
                                         }
                                     });
                                 }
@@ -241,17 +230,20 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
         judgeBtnDisabled = true;
         chooseFileBtn.addClass("layui-btn-disabled");
         uploadBtn.addClass("layui-btn-disabled");
-        compileInfo.addClass("layui-hide");
+        // compileInfo.addClass("layui-hide");
         statusText.text("编译中");
         loadingIcon.removeClass("layui-hide");
         loadingIcon.addClass("layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop");
         loadingIcon.css("color","#009688");
-        //隐藏资源面板、成绩面板
+        //隐藏资源面板、成绩面板、编译错误面板
         if(!gradeInfoPanel.hasClass("layui-hide")){
             gradeInfoPanel.addClass("layui-hide");
         }
         if(!runInfoPanel.hasClass("layui-hide")){
             runInfoPanel.addClass("layui-hide");
+        }
+        if(!compileInfoPanel.hasClass("layui-hide")){
+            compileInfoPanel.addClass("layui-hide");
         }
 
         //请求评测
@@ -381,8 +373,13 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
                         loadingIcon.addClass("layui-icon-tips");
                         loadingIcon.removeClass("layui-icon-loading layui-hide layui-anim layui-anim-rotate layui-anim-loop");
                         loadingIcon.css("color","#FF5722");
-                        console.log(data.compileOutput);
-                        compileInfo.text(data.compileOutput);
+                        // data.compileOutput = data.compileOutput.replace('\b','');
+                        // data.compileOutput = data.compileOutput.replace('\b','');
+                        var processedCompileOutputStr = data.compileOutput.substring(
+                            0,
+                            data.compileOutput.lastIndexOf('\n')+1);
+                        console.log(processedCompileOutputStr);
+                        compileInfo.text(processedCompileOutputStr);
                         $("#compile-info-panel").removeClass("layui-hide");
 
                         //编译失败，状态变为红叉
@@ -400,18 +397,19 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
 
 
                         $("#detail-popup-btn").click(function () {
-                            var pre = '<pre>'+ data.compileOutput + '</pre>';
-                            console.log(pre);
-                            textEditor.html(pre);
-                            textEditor.removeClass("layui-hide");
+                            // var pre = '<pre>'+ data.compileOutput + '</pre>';
+                            // console.log(pre);
+
+                            textDisplayer.text(processedCompileOutputStr);
+                            textDisplayer.removeClass("layui-hide");
                             layer.open({
                                 type:1,
                                 title:'错误信息',
-                                content:textEditor,
+                                content:textDisplayer,
                                 resize:false,
                                 maxmin:true,
                                 end:function () {
-                                    textEditor.addClass("layui-hide");
+                                    textDisplayer.addClass("layui-hide");
                                 },
                                 area:'800px',
                                 skin:'layui-layer-lan'
@@ -431,7 +429,10 @@ layui.use(['jquery', 'layer','util','element','code','upload','dropdown','table'
 
                 //可以再次上传
                 if(data.status!==0){
-                    compileInfo.removeClass("layui-hide");
+                    if(compileInfoPanel.hasClass("layui-hide")){
+                        compileInfoPanel.removeClass("layui-hide");
+                    }
+                    // compileInfo.removeClass("layui-hide");
                     // judgeBtn.removeClass("layui-btn-disabled");
                     console.log("disabled!");
                     judgeBtnDisabled=true;

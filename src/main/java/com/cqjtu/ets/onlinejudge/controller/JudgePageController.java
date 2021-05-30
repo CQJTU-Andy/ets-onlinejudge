@@ -54,7 +54,7 @@ public class JudgePageController {
     public String getJudgePage(HttpServletRequest req, Model dataModel){
         String gradeBtnText =
         "<button class='layui-btn layui-btn-primary' style='font-size: 1.2em; margin: 5px;'>" +
-        "测试数据<span style='color:#009688;'>%d</span>:<span style='color: #1E9FFF'>%.1f</span>分" +
+        "测试数据<span style='color:#009688;'>%d</span>:<span style='color: #1E9FFF'>%.2f</span>分" +
         "&nbsp&nbsp&nbsp&nbsp&nbsp总行数: <span style='color: #009688'>%d</span>" +
         "&nbsp&nbsp&nbsp&nbsp&nbsp命中行数:<span style='color: #FF5722'>%d</span></button>";
         /**
@@ -70,13 +70,13 @@ public class JudgePageController {
          *    允许上传文件进行评测，同时icon设为？，不加载代码文件（因为压根儿就没有），不显示成绩
          * 2.3 数据库实验表获取数据，显示发布、截止时间，题目性能限制，题目详情
          */
-//        long experiment_id = Long.parseLong(req.getParameter("eid"));
-        long experiment_id = 1;
+        long experiment_id = Long.parseLong(req.getParameter("eid"));
+//        long experiment_id = 1;
 //        dataModel.addAttribute("experimentId",experiment_id);
         dataModel.addAttribute("runInfoPanelAvailable","layui-hide");
         dataModel.addAttribute("gradeInfoPanelAvailable","layui-hide");
 
-        long problem_id = 1;
+        long problem_id =  Long.parseLong(req.getParameter("pid"));;
         OjProgrammingProblem programmingProblem = programmingProblemService.getProgrammingProblemByPK(problem_id);
         dataModel.addAttribute("programmingProblem",programmingProblem);
 
@@ -102,9 +102,14 @@ public class JudgePageController {
                 File[] uploadedFiles = FileUtil.getFilesNonrecursively(latestCommit.getFile_path());
                 if(uploadedFiles!=null && uploadedFiles.length > 0){ // length一般不为零
                     for (File uploadedFile : uploadedFiles) {
-                        double fileSize = (double) uploadedFile.length() / 1024;
-                        String fileSizeStr = String.format("%.2f", fileSize) + "KB";
-                        upLoadedFilesList.add(new UpLoadedFilesVO(uploadedFile.getName(), fileSizeStr));
+                        if(uploadedFile.getName().contains(".txt")
+                        || uploadedFile.getName().contains(".c")
+                        || uploadedFile.getName().contains(".cpp")
+                        || uploadedFile.getName().contains(".h")){ //只展示这几种文件
+                            double fileSize = (double) uploadedFile.length() / 1024;
+                            String fileSizeStr = String.format("%.2f", fileSize) + "KB";
+                            upLoadedFilesList.add(new UpLoadedFilesVO(uploadedFile.getName(), fileSizeStr));
+                        }
                     }
                 }
                 dataModel.addAttribute("uploadedFilesList",upLoadedFilesList);

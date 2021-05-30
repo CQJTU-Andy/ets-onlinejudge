@@ -1,13 +1,8 @@
 package com.cqjtu.ets.onlinejudge.jni.datastructure;
 
-import com.cqjtu.ets.onlinejudge.jni.result.WholeResult;
 import com.cqjtu.ets.onlinejudge.util.CommonUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 @Component
 public class JudgeConfig {
@@ -21,7 +16,9 @@ public class JudgeConfig {
     String testOutPath; //测试输出文件路径(文件夹)
     String outputFilePath; //输出文件路径(重定向被测程序的stdout到outputFilePath)
 
-    int[] sysCallList; //系统调用名单，与filterMode搭配使用
+    int[] sysCallList; //系统调用名单，与filterMode搭配使用 [已弃用]
+
+    String seccompFilterFilePath=""; // 系统调用配置文件
 
     int compareMethod; // 答案对比采用的方法 1.字节对比 2.字符对比
 
@@ -30,7 +27,13 @@ public class JudgeConfig {
 
     ResourceLimit requiredResourceLimit; //题目要求的资源限制值
 
-    WholeResult wholeResult; //所有评判结果
+    public String getSeccompFilterFilePath() {
+        return seccompFilterFilePath;
+    }
+
+    public void setSeccompFilterFilePath(String seccompFilterFilePath) {
+        this.seccompFilterFilePath = seccompFilterFilePath;
+    }
 
     public int getCompareMethod() {
         return compareMethod;
@@ -136,11 +139,4 @@ public class JudgeConfig {
         this.requiredResourceLimit = requiredResourceLimit;
     }
 
-    public WholeResult getWholeResult() {
-        return wholeResult;
-    }
-
-    public void setWholeResult(WholeResult wholeResult) {
-        this.wholeResult = wholeResult;
-    }
 }

@@ -8,16 +8,18 @@
     <!--  引入css文件-->
     <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/ets/onlinejudge/css/problem_page.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">
+    <link rel="stylesheet" href="/ets/onlinejudge/css/code.css">
+<!--    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css">-->
 </head>
 
-<div id="text-editor" class="layui-hide" style="width: 800px;padding-left: 1px;"></div>
+<!--background-color: #23241f;-->
+<pre id="text-displayer" class="layui-hide" style="width: 800px;padding-left: 1px; font-size:1.2em;"></pre>
 
 <body class="layui-bg-gray">
 
-  <div id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;z-index: 100;">
+  <div class="layui-hide" id="progress-container" style="position: fixed;top: 0; width:100%;height: 10px;z-index: 100;">
     <div class="layui-progress" lay-filter="uploadFilesProgress">
-      <div class="layui-progress-bar layui-bg-green" lay-percent="100%"></div>
+      <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
     </div>
   </div>
 
@@ -41,9 +43,9 @@
         <br>
         <br>
         <div class="layui-row parent-text-align-center" id="experiment-limit-container">
-          <div class="layui-col-lg3" th:text="'发布时间:' + ${programmingProblem.getCreated_time()}">
+          <div class="layui-col-lg3" th:text="'发布时间:' + ${programmingProblem.getFormattedCreatedTime()}">
           </div>
-          <div class="layui-col-lg3" th:text="' 截止时间:' + ${programmingProblem.getEnd_time()}">
+          <div class="layui-col-lg3" th:text="' 截止时间:' + ${programmingProblem.getFormattedEndTime()}">
           </div>
           <div class="layui-col-lg3" th:text="'CPU 时间限制:' + ${programmingProblem.getCpu_time_limited()} + 'ms'">
             <i class="layui-icon layui-icon-about"></i>
@@ -59,7 +61,7 @@
 
   <div class="layui-row regular-border" id="experiment-other-info-container">
 
-    <div class="layui-col-lg6" id="problem-container" style="height:800px;overflow-y: auto;">
+    <div class="layui-col-lg6" id="problem-container" style="height:700px;overflow-y: auto;">
 
       <div class="layui-row"  id="problem-detail-container">
         <div class="layui-card">
@@ -68,7 +70,7 @@
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
             <!--/*@thymesVar id="problemDetail" type="java.lang.String"*/-->
-            <p th:text="${programmingProblem.getProblem_detail()}">
+            <p th:utext="${programmingProblem.getProblem_detail()}">
             </p>
           </div>
         </div>
@@ -82,7 +84,7 @@
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
             <!--/*@thymesVar id="inputDescription" type="java.lang.String"*/-->
-            <p th:text="${programmingProblem.getInput_description()}">
+            <p th:utext="${programmingProblem.getInput_description()}">
             </p>
           </div>
         </div>
@@ -96,26 +98,42 @@
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
             <!--/*@thymesVar id="outputDescription" type="java.lang.String"*/-->
-            <p th:text="${programmingProblem.getOutput_description()}">
+            <p th:utext="${programmingProblem.getOutput_description()}">
             </p>
           </div>
         </div>
       </div>
       <br>
 
-      <div class="layui-row"  id="problem-io-sample-container">
+      <div class="layui-row"  id="problem-i-sample-container">
         <div class="layui-card">
           <div class="layui-card-header">
-            <h3><strong>输入输出示例</strong></h3><br>
+            <h3><strong>输入示例</strong></h3><br>
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
             <!--/*@thymesVar id="ioSample" type="java.lang.String"*/-->
-            <p th:text="${programmingProblem.getIo_sample()}">
+            <p th:text="${programmingProblem.getI_sample()}">
             </p>
           </div>
         </div>
       </div>
       <br>
+
+      <div class="layui-row"  id="problem-o-sample-container">
+        <div class="layui-card">
+          <div class="layui-card-header">
+            <h3><strong>输出示例</strong></h3><br>
+          </div>
+          <div class="layui-row multiline-text-padding layui-card-body">
+            <!--/*@thymesVar id="ioSample" type="java.lang.String"*/-->
+            <p th:utext="${programmingProblem.getO_sample()}">
+            </p>
+          </div>
+        </div>
+      </div>
+      <br>
+
+
 
       <div class="layui-row"  id="problem-tips-container">
         <div class="layui-card">
@@ -124,14 +142,14 @@
           </div>
           <div class="layui-row multiline-text-padding layui-card-body">
             <!--/*@thymesVar id="tips" type="java.lang.String"*/-->
-            <p th:text="${programmingProblem.getTips()}">
+            <p th:utext="${programmingProblem.getTips()}">
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="layui-col-lg6" id="judge-container" style="height:800px;padding: 10px;overflow-y: auto;">
+    <div class="layui-col-lg6" id="judge-container" style="height:700px;padding: 10px;overflow-y: auto;">
 
 
 

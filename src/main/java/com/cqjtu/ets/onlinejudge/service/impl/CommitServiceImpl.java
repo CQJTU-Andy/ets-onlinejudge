@@ -37,9 +37,9 @@ public class CommitServiceImpl implements CommitService {
 
     @Override
     public Long getMaxCommitId() {
-        List<Long> commitIdList = ojCommitMapper.selectCommitId();
-        if(commitIdList !=null && commitIdList.size() > 0){
-            return commitIdList.get(0);
+        List<Long> problemIdList = ojCommitMapper.selectCommitId();
+        if(problemIdList !=null && problemIdList.size() > 0){
+            return problemIdList.get(0);
         }
         return 0L;
     }

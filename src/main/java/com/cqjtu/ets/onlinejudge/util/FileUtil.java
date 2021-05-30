@@ -16,12 +16,13 @@ public class FileUtil {
 
     private static final int buffer = 2048;
 
+
     public static boolean existsStrInFilesName(File[] files, String str) {
         if (files == null || files.length < 1) {
             return false;
         }
         for (File file : files) {
-            if (file.getPath().contains(str)) {
+            if (file.getName().contains(str)) {
                 return true;
             }
         }

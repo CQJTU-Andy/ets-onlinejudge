@@ -5,13 +5,15 @@ import com.cqjtu.ets.onlinejudge.jni.datastructure.ResourceLimit;
 public class ControllerResult {
     /**
      * -1: ERROR 用来指示Java后端代码内部错误而非JNI的SE程序错误
-     * 0: OK
-     * 1: SE
+     * 0: OK, //okay
+     * 1: SE, //c++代码错误
      * 2: CLE, //Cpu Time Limited Error
      * 3: RLE, //Real Time Limited Error
      * 4: MLE, //Memory Limited Error
      * 5: OLE, //Output Limited Error, 输出文件的数据过大
-     * 6: RE, //Runtime Error
+     * 6: RE, //Runtime Error，程序运行时错误
+     * 7: EE, //Exe Error 找不到可执行文件，该错误不从JNI返回
+     * 8: IS, //非法的系统调用
      */
     int status=-1;
     int returnValue=-1;

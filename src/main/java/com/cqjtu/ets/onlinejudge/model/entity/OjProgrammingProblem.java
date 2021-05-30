@@ -1,6 +1,8 @@
 package com.cqjtu.ets.onlinejudge.model.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class OjProgrammingProblem {
     private Long problem_id=-1L;
@@ -11,11 +13,13 @@ public class OjProgrammingProblem {
 
     private String output_description="none";
 
-    private String test_input_data_Path ="none";
+    private String test_input_data_path ="/root/.ets/judge/problemPath/";
 
-    private String test_output_data_Path ="none";
+    private String test_output_data_path ="/root/.ets/judge/problemPath/";
 
-    private String io_sample="none";
+    private String i_sample ="none";
+
+    private String o_sample = "none";
 
     private String tips="none";
 
@@ -37,7 +41,33 @@ public class OjProgrammingProblem {
 
     private Date end_time = new Date();
 
+    private String seccomp_filter_file_path="";
+
+    public String getSeccomp_filter_file_path() {
+        return seccomp_filter_file_path;
+    }
+
+    public void setSeccomp_filter_file_path(String seccomp_filter_file_path) {
+        this.seccomp_filter_file_path = seccomp_filter_file_path;
+    }
+
     public OjProgrammingProblem() {
+    }
+
+    public String getFormattedCreatedTime(){
+        return new SimpleDateFormat("yyyy年MM月dd日 hh:mm  EE", Locale.CHINA).format(created_time);
+    }
+
+    public String getFormattedEndTime(){
+        return new SimpleDateFormat("yyyy年MM月dd日 hh:mm  EE", Locale.CHINA).format(end_time);
+    }
+
+    public String getO_sample() {
+        return o_sample;
+    }
+
+    public void setO_sample(String o_sample) {
+        this.o_sample = o_sample;
     }
 
     public Date getEnd_time() {
@@ -72,12 +102,12 @@ public class OjProgrammingProblem {
         this.sj_code_path = sj_code_path;
     }
 
-    public String getIo_sample() {
-        return io_sample;
+    public String getI_sample() {
+        return i_sample;
     }
 
-    public void setIo_sample(String io_sample) {
-        this.io_sample = io_sample;
+    public void setI_sample(String i_sample) {
+        this.i_sample = i_sample;
     }
 
     public Long getProblem_id() {
@@ -112,20 +142,20 @@ public class OjProgrammingProblem {
         this.output_description = output_description == null ? null : output_description.trim();
     }
 
-    public String getTest_input_data_Path() {
-        return test_input_data_Path;
+    public String getTest_input_data_path() {
+        return test_input_data_path;
     }
 
-    public void setTest_input_data_Path(String test_input_data_Path) {
-        this.test_input_data_Path = test_input_data_Path == null ? null : test_input_data_Path.trim();
+    public void setTest_input_data_path(String test_input_data_path) {
+        this.test_input_data_path = test_input_data_path == null ? null : test_input_data_path.trim();
     }
 
-    public String getTest_output_data_Path() {
-        return test_output_data_Path;
+    public String getTest_output_data_path() {
+        return test_output_data_path;
     }
 
-    public void setTest_output_data_Path(String test_output_data_Path) {
-        this.test_output_data_Path = test_output_data_Path == null ? null : test_output_data_Path.trim();
+    public void setTest_output_data_path(String test_output_data_path) {
+        this.test_output_data_path = test_output_data_path == null ? null : test_output_data_path.trim();
     }
 
     public String getTips() {

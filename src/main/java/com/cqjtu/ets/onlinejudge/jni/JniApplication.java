@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JniApplication {
     static {
         try{
+            System.loadLibrary("kafel");
             System.loadLibrary("judge");
         }catch (java.lang.UnsatisfiedLinkError e){
             e.printStackTrace();

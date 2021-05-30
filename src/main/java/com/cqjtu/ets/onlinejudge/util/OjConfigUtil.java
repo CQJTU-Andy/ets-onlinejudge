@@ -18,6 +18,7 @@ public class OjConfigUtil {
         createIfNotExists(userHome+codePath);
         createIfNotExists(userHome+problemPath);
         createIfNotExists(userHome+sjCodePath);
+        createIfNotExists(userHome+seccompFilterFilePath);
     }
 
     @Value("${oj.config.judgeOutputFilePath}")
@@ -53,12 +54,23 @@ public class OjConfigUtil {
     @Value("${oj.config.sysCallFilterMode}")
     private int sysCallFilterMode;
 
+    @Value("${oj.config.seccompFilterFilePath}")
+    private String seccompFilterFilePath;
+
     @Value("${oj.score.great}")
     private float great;
     @Value("${oj.score.good}")
     private float good;
     @Value("${oj.score.pass}")
     private float pass;
+
+    public String getSeccompFilterFilePath() {
+        return seccompFilterFilePath;
+    }
+
+    public void setSeccompFilterFilePath(String seccompFilterFilePath) {
+        this.seccompFilterFilePath = seccompFilterFilePath;
+    }
 
     public float getGreat() {
         return great;
